@@ -4,7 +4,7 @@ import { ExcursionPageContent } from "@/components/ExcursionPageContent";
 import { JsonLd } from "@/components/JsonLd";
 import { getExcursion } from "@/lib/excursions";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/schema";
-import { absoluteUrl, pageMetadata } from "@/lib/site";
+import { HERO_IMAGE, HERO_IMAGE_ALT, absoluteUrl, pageMetadata } from "@/lib/site";
 
 export function createExcursionPage(slug: string) {
   const excursion = getExcursion(slug);
@@ -18,20 +18,20 @@ export function createExcursionPage(slug: string) {
     path: excursion.path,
   });
 
-  const metadata: Metadata = excursion.heroImage
-    ? {
-        ...baseMeta,
-        openGraph: {
-          ...baseMeta.openGraph,
-          images: [
-            {
-              url: absoluteUrl(excursion.heroImage),
-              alt: excursion.heroImageAlt ?? excursion.title,
-            },
-          ],
-        },
-      }
-    : baseMeta;
+  const heroImage = excursion.heroImage ?? HERO_IMAGE;
+  const heroImageAlt = excursion.heroImageAlt ?? HERO_IMAGE_ALT;
+
+  const metadata: Metadata = {
+    ...baseMeta,
+    openGraph: {
+      ...baseMeta.openGraph,
+      images: [{ url: absoluteUrl(heroImage), alt: heroImageAlt }],
+    },
+    twitter: {
+      ...baseMeta.twitter,
+      images: [absoluteUrl(heroImage)],
+    },
+  };
 
   function ExcursionPage() {
     const data = getExcursion(slug);

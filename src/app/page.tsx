@@ -1,54 +1,66 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ExcursionCard } from "@/components/ExcursionCard";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { CruisePassengerSnapshot } from "@/components/CruisePassengerSnapshot";
-import { pageMetadata } from "@/lib/site";
+import { GEO_LABEL, HERO_IMAGE, HERO_IMAGE_ALT, pageMetadata } from "@/lib/site";
 
-const homeMeta = pageMetadata({
+export const metadata: Metadata = pageMetadata({
   title: "Vancouver Shore Excursions & Cruise Planning Guide",
   description:
     "The complete Vancouver cruise planning guide — shore excursions, pre- and post-cruise stays, hotels near Canada Place, and sightseeing for Alaska cruise passengers.",
   path: "/",
 });
 
-export const metadata: Metadata = homeMeta;
-
 const featuredCards = [
   {
     href: "/best-of-vancouver-and-bridge",
     label: "Best of Vancouver & Bridge",
     desc: "City highlights and Capilano in one day",
+    image: "/images/best-of-vancouver-hero.png",
+    imageAlt: "Lions Gate Bridge and Vancouver skyline",
   },
   {
     href: "/capilano-suspension-bridge",
     label: "Capilano Suspension Bridge",
     desc: "Rainforest bridge and canyon walkways",
+    image: "/images/capilano-hero.png",
+    imageAlt: "Capilano Suspension Bridge over rainforest canyon",
   },
   {
     href: "/stanley-park",
     label: "Stanley Park",
     desc: "Seawall, totems, and harbour views",
+    image: "/images/stanley-park-hero.png",
+    imageAlt: "Stanley Park seawall with harbour views",
   },
   {
     href: "/granville-island",
     label: "Granville Island",
     desc: "Public market and False Creek ferries",
+    image: "/images/granville-island-hero.png",
+    imageAlt: "Granville Island Public Market",
   },
   {
     href: "/vancouver-pre-cruise-guide",
     label: "Pre-Cruise Guide",
     desc: "Arrive early and plan before embarkation",
+    image: "/images/vancouver-pre-cruise-hero.png",
+    imageAlt: "Canada Place waterfront at dusk",
   },
   {
     href: "/vancouver-post-cruise-guide",
     label: "Post-Cruise Guide",
     desc: "Extend your stay after disembarkation",
+    image: "/images/vancouver-cruise-port.png",
+    imageAlt: "Cruise ship at Canada Place",
   },
   {
     href: "/best-hotels-near-canada-place",
     label: "Hotels Near Canada Place",
     desc: "Where to stay before or after your cruise",
+    image: "/images/vancouver-pre-cruise-hero.png",
+    imageAlt: "Waterfront hotels near Canada Place",
   },
 ];
 
@@ -56,15 +68,15 @@ export default function HomePage() {
   return (
     <div>
       <section className="relative overflow-hidden bg-slate-900 text-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
-          <div className="relative max-w-3xl">
+        <div className="mx-auto grid max-w-6xl lg:grid-cols-2 lg:min-h-[32rem]">
+          <div className="relative flex flex-col justify-center px-4 py-14 md:py-20 lg:py-24">
             <div
-              className="pointer-events-none absolute -inset-8 bg-gradient-to-br from-slate-900 via-blue-950/90 to-slate-900 opacity-90"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950/90 to-slate-900 lg:to-transparent"
               aria-hidden
             />
             <div className="relative">
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-200">
-                Vancouver, BC · Alaska cruise gateway
+                {GEO_LABEL} · Alaska cruise gateway
               </p>
               <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
                 Vancouver Shore Excursions
@@ -89,6 +101,21 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
+          </div>
+
+          <div className="relative min-h-[18rem] sm:min-h-[22rem] lg:min-h-full lg:order-last">
+            <Image
+              src={HERO_IMAGE}
+              alt={HERO_IMAGE_ALT}
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-slate-900/90 lg:via-slate-900/25 lg:to-transparent"
+              aria-hidden
+            />
           </div>
         </div>
       </section>
@@ -121,10 +148,21 @@ export default function HomePage() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md hover:border-blue-300"
+              className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md hover:border-blue-300"
             >
-              <p className="font-semibold text-slate-900">{item.label}</p>
-              <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+              <div className="p-5">
+                <p className="font-semibold text-slate-900">{item.label}</p>
+                <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
+              </div>
             </Link>
           ))}
         </div>

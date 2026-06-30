@@ -41,6 +41,9 @@ export const excursions: Excursion[] = [
     path: "/best-of-vancouver-and-bridge",
     title: "Best of Vancouver & Bridge Shore Excursion",
     shortTitle: "Best of Vancouver & Bridge",
+    heroImage: "/images/best-of-vancouver-hero.png",
+    heroImageAlt:
+      "Lions Gate Bridge spanning Burrard Inlet with Stanley Park, Vancouver skyline, and North Shore mountains",
     summary:
       "A comprehensive introduction to Vancouver — Stanley Park seawall views, Lions Gate Bridge, Capilano Suspension Bridge, and downtown highlights in one well-paced cruise day.",
     duration: "5–6 hours (typical organised tour)",
@@ -109,6 +112,9 @@ export const excursions: Excursion[] = [
     path: "/capilano-suspension-bridge",
     title: "Capilano Suspension Bridge Shore Excursion",
     shortTitle: "Capilano Suspension Bridge",
+    heroImage: "/images/capilano-hero.png",
+    heroImageAlt:
+      "Capilano Suspension Bridge over a lush rainforest canyon in North Vancouver",
     summary:
       "Rainforest walkways, canyon views, and the famous suspension bridge across the Capilano River — Vancouver's essential North Shore experience for cruise passengers.",
     duration: "3–4 hours (with transfers)",
@@ -177,6 +183,9 @@ export const excursions: Excursion[] = [
     path: "/stanley-park",
     title: "Stanley Park Shore Excursion",
     shortTitle: "Stanley Park",
+    heroImage: "/images/stanley-park-hero.png",
+    heroImageAlt:
+      "Stanley Park seawall with harbour views, evergreen trees, and Vancouver skyline",
     summary:
       "Ancient cedars, seawall cycling paths, First Nations totems, and harbour views — Vancouver's 400-hectare urban park at the edge of Canada Place.",
     duration: "2–4 hours",
@@ -245,6 +254,9 @@ export const excursions: Excursion[] = [
     path: "/granville-island",
     title: "Granville Island Shore Excursion",
     shortTitle: "Granville Island",
+    heroImage: "/images/granville-island-hero.png",
+    heroImageAlt:
+      "Granville Island Public Market stalls with fresh produce and local food vendors",
     summary:
       "Public market flavours, artisan studios, street performers, and False Creek views — Vancouver's creative waterfront village across the water from downtown.",
     duration: "2–3 hours",
@@ -313,6 +325,9 @@ export const excursions: Excursion[] = [
     path: "/gastown",
     title: "Gastown Shore Excursion",
     shortTitle: "Gastown",
+    heroImage: "/images/gastown-hero.png",
+    heroImageAlt:
+      "Gastown Steam Clock on cobblestone streets with historic brick buildings in Vancouver",
     summary:
       "Steam clock, cobblestone streets, Victorian facades, and emerging dining — historic Vancouver at walking distance from the cruise terminal.",
     duration: "1.5–3 hours",

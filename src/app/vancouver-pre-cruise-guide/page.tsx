@@ -9,7 +9,12 @@ import { JsonLd } from "@/components/JsonLd";
 import { NeedHelpCTA } from "@/components/NeedHelpCTA";
 import { PageHero } from "@/components/PageHero";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/schema";
-import { pageMetadata } from "@/lib/site";
+import {
+  PRE_CRUISE_HERO_ALT,
+  PRE_CRUISE_HERO_IMAGE,
+  absoluteUrl,
+  pageMetadata,
+} from "@/lib/site";
 
 const path = "/vancouver-pre-cruise-guide";
 
@@ -36,12 +41,20 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = pageMetadata({
+const preMeta = pageMetadata({
   title: "Vancouver Pre-Cruise Guide — Plan Before Your Alaska Cruise",
   description:
     "Should you arrive early? Where to stay near Canada Place, what to see before embarkation, Capilano timing, luggage tips, and realistic pre-cruise itineraries.",
   path,
 });
+
+export const metadata: Metadata = {
+  ...preMeta,
+  openGraph: {
+    ...preMeta.openGraph,
+    images: [{ url: absoluteUrl(PRE_CRUISE_HERO_IMAGE), alt: PRE_CRUISE_HERO_ALT }],
+  },
+};
 
 export default function PreCruiseGuidePage() {
   return (
@@ -68,6 +81,8 @@ export default function PreCruiseGuidePage() {
           eyebrow="Pre & post cruise hub"
           title="Vancouver pre-cruise guide"
           subtitle="Arriving before embarkation turns Vancouver from a transit city into the opening chapter of your Alaska holiday."
+          imageSrc={PRE_CRUISE_HERO_IMAGE}
+          imageAlt={PRE_CRUISE_HERO_ALT}
         />
 
         <div className="mt-10 space-y-10">

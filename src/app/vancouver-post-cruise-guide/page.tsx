@@ -9,7 +9,12 @@ import { JsonLd } from "@/components/JsonLd";
 import { NeedHelpCTA } from "@/components/NeedHelpCTA";
 import { PageHero } from "@/components/PageHero";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/schema";
-import { pageMetadata } from "@/lib/site";
+import {
+  PORT_HERO_ALT,
+  PORT_HERO_IMAGE,
+  absoluteUrl,
+  pageMetadata,
+} from "@/lib/site";
 
 const path = "/vancouver-post-cruise-guide";
 
@@ -36,12 +41,20 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = pageMetadata({
+const postMeta = pageMetadata({
   title: "Vancouver Post-Cruise Guide — After Your Alaska Cruise",
   description:
     "What to do after disembarkation at Canada Place — late flights, extra hotel nights, half-day sightseeing, airport transfers, and realistic timing to YVR.",
   path,
 });
+
+export const metadata: Metadata = {
+  ...postMeta,
+  openGraph: {
+    ...postMeta.openGraph,
+    images: [{ url: absoluteUrl(PORT_HERO_IMAGE), alt: PORT_HERO_ALT }],
+  },
+};
 
 export default function PostCruiseGuidePage() {
   return (
@@ -68,6 +81,8 @@ export default function PostCruiseGuidePage() {
           eyebrow="Pre & post cruise hub"
           title="Vancouver post-cruise guide"
           subtitle="Your ship has docked — but the holiday does not have to end at the terminal curb."
+          imageSrc={PORT_HERO_IMAGE}
+          imageAlt={PORT_HERO_ALT}
         />
 
         <div className="mt-10 space-y-10">

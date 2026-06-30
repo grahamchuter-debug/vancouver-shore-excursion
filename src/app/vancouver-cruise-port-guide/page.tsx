@@ -10,7 +10,7 @@ import { NeedHelpCTA } from "@/components/NeedHelpCTA";
 import { PageHero } from "@/components/PageHero";
 import { ReturnToShipBlock } from "@/components/ReturnToShipBlock";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/schema";
-import { pageMetadata } from "@/lib/site";
+import { PORT_HERO_ALT, PORT_HERO_IMAGE, absoluteUrl, pageMetadata } from "@/lib/site";
 
 const path = "/vancouver-cruise-port-guide";
 
@@ -37,12 +37,20 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = pageMetadata({
+const portMeta = pageMetadata({
   title: "Vancouver Cruise Port Guide — Canada Place",
   description:
     "Complete guide to Vancouver's Canada Place cruise terminal — embarkation, walking distances, taxis, luggage, and planning excursions before or after your Alaska cruise.",
   path,
 });
+
+export const metadata: Metadata = {
+  ...portMeta,
+  openGraph: {
+    ...portMeta.openGraph,
+    images: [{ url: absoluteUrl(PORT_HERO_IMAGE), alt: PORT_HERO_ALT }],
+  },
+};
 
 export default function PortGuidePage() {
   return (
@@ -69,6 +77,8 @@ export default function PortGuidePage() {
           eyebrow="Port guide"
           title="Vancouver cruise port guide"
           subtitle="Canada Place is more than a pier — it is the hub for Alaska embarkation, urban sightseeing, and pre- and post-cruise planning."
+          imageSrc={PORT_HERO_IMAGE}
+          imageAlt={PORT_HERO_ALT}
         />
 
         <div className="mt-10 space-y-10">
