@@ -7,5 +7,9 @@
   "assets": {
     "directory": "out",
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  "routes": [
+    { "pattern": "vancouvershoreexcursion.com", "custom_domain": true },
+    { "pattern": "www.vancouvershoreexcursion.com", "custom_domain": true }
+  ]
 }
